@@ -12,7 +12,7 @@ const hotel = new mongoose.Schema({
     description:{type:String},
     like:[{type:ObjectId,ref:'User'}],
     viewCounter:{type:Number,default:0},
-    dataCreation:{type:Date,required:true}
+    dateCreation:{type:Date,required:true}
 })
 
 module.exports = mongoose.model('Hotel', hotel);

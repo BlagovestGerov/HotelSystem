@@ -21,7 +21,19 @@ module.exports = {
         })
     },
     getAddHotelView:(req, res)=>{
-res.render('hotels/generateHotel')
+    res.render('hotels/generateHotel')
+    },
+    getDetails:(req,res)=>{
+        let targetHotel = req.query.id
+
+        Hotel.findById(targetHotel).then(selectedHotel=>{
+
+            selectedHotel.viewCounter+=1
+            selectedHotel.save(selectedHotel).then(()=>{
+                res.render('hotels/details',{selectedHotel})                
+            })
+            
+        })
     }
 }
 

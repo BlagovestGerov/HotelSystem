@@ -16,6 +16,8 @@ module.exports = app => {
     app.get('/addHotel', controllers.hotel.getAddHotelView);
     app.post('/addHotel', controllers.hotel.addHotel);
 
+    app.get('/details', controllers.hotel.getDetails)
+
     app.all('*', (req, res) => {
         res.status(404);
         res.send('404 Not Found');
