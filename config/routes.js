@@ -21,6 +21,9 @@ module.exports = app => {
 
     //Comment
     app.post('/comment/:id',controllers.comment.addComment)
+    
+    //List    
+    app.get('/list', controllers.hotel.getList)
 
     app.all('*', (req, res) => {
         res.status(404);
