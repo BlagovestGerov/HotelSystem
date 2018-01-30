@@ -17,6 +17,7 @@ module.exports = app => {
     app.post('/addHotel', controllers.hotel.addHotel);
 
     app.get('/details', controllers.hotel.getDetails)
+    app.get('/like/:id', controllers.hotel.likeDislike)
 
     app.all('*', (req, res) => {
         res.status(404);

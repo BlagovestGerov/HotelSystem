@@ -6,7 +6,11 @@
     <img class="hotelImg" src="{{selectedHotel.image}}" alt="hotel image">   
     <p>{{selectedHotel.description}}</p>
 <div>
+    {{#if currentUser}}
         <a  href="like/{{selectedHotel._id}}"><img class="likeBtn" src="/img/like-button-png-2.png" alt="like"></a>
+        {{else}}
+        <img class="likeBtn" src="/img/like-button-png-2.png" alt="like">
+        {{/if}}
         <span>{{selectedHotel.prop}}</span>
             <p>{{selectedHotel.viewCounter}}</p>        
 </div>

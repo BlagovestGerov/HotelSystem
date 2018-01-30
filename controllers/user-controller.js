@@ -3,7 +3,7 @@ const User = require('mongoose').model('User');
 
 module.exports = {
     registerGet: (req, res) => {
-        res.render('users/register');
+        res.render('users/loginRegister');
     },
     registerPost: async (req, res) => {
         const reqUser = req.body;
@@ -25,7 +25,7 @@ module.exports = {
             req.logIn(user, (err, user) => {
                 if (err) {
                     res.locals.globalError = err;
-                    res.render('users/register', user);
+                    res.render('users/loginRegister', user);
                 } else {
                     res.redirect('/');
                 }
@@ -41,7 +41,7 @@ module.exports = {
         res.redirect('/');
     },
     loginGet: (req, res) => {
-        res.render('users/login');
+        res.render('users/loginRegister');
     },
     loginPost: async (req, res) => {
         const reqUser = req.body;
