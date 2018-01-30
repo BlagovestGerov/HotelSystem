@@ -27,11 +27,23 @@ module.exports = {
         let targetHotel = req.query.id
 
 
-        Hotel.findById(targetHotel).then(selectedHotel=>{
+        Hotel.findById(targetHotel).populate('comments.creator').then(selectedHotel=>{
             selectedHotel.prop = selectedHotel.like.length
             selectedHotel.viewCounter+=1
-            selectedHotel.save(selectedHotel).then(()=>{
-                res.render('hotels/details',{selectedHotel})                
+            selectedHotel.save(selectedHotel).then(()=>{            
+
+            let comments = []
+            for(let elem of selectedHotel.comments){
+                let tempObj = {
+                    userName:elem.creator.username,
+                    userComment:elem.description,
+                    userTitle:elem.title,
+                    datePosted:elem.creationDate.toUTCString()
+                }
+                comments.push(tempObj)
+            }
+
+                res.render('hotels/details',{selectedHotel,comments})                
             })
             
         })
@@ -56,5 +68,6 @@ module.exports = {
             })
         })
     }
+    
 }
 

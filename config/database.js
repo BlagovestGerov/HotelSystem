@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 const User = require('../models/User');
+const Comment = require('../models/Comment')
 const Hotel = require('../models/Hotel');
 
 module.exports = config => {

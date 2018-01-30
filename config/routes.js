@@ -13,11 +13,14 @@ module.exports = app => {
 
     //Add  hotel
 
-    app.get('/addHotel', controllers.hotel.getAddHotelView);
+    app.get('/addHotel', controllers.hotel.getAddHotelView)
     app.post('/addHotel', controllers.hotel.addHotel);
 
     app.get('/details', controllers.hotel.getDetails)
     app.get('/like/:id', controllers.hotel.likeDislike)
+
+    //Comment
+    app.post('/comment/:id',controllers.comment.addComment)
 
     app.all('*', (req, res) => {
         res.status(404);

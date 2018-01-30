@@ -17,7 +17,22 @@
     
 </fieldset>
 
+<h1>Comments</h1>
+
+{{#each comments}}
+<fieldset>
+    <legend>
+        <p>{{this.userName}}</p>
+    </legend>
+    <p>{{this.userTitle}}</p>
+    <p>{{this.userComment}}</p>
+    <p>{{this.datePosted}}</p>
+</fieldset>
+{{/each}}
+
+{{#if currentUser}}
 <div class="login-page">
+<h1>Add comment</h1>            
     <div class="form">
         <form action="/comment/{{selectedHotel._id}}" method="POST" class="create-form">
             <input type="text" name='title' placeholder="Title" />
@@ -27,15 +42,6 @@
         </form>
     </div>
 </div>
+{{/if}}
 
 
-
-{{#each comments}}
-<fieldset>
-    <legend>
-        <p>{{this.userName}}</p>
-    </legend>
-    <p>{{this.userComment}}</p>
-    <p>{{this.datePosted}}</p>
-</fieldset>
-{{/each}}
