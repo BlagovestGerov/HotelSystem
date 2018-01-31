@@ -1,4 +1,5 @@
 const Hotel = require('mongoose').model('Hotel');
+const Category = require('mongoose').model('Category')
 
 module.exports = {
     addHotel:(req, res)=>{
@@ -13,15 +14,24 @@ module.exports = {
             dateCreation:Date.now()
         }
 
-        Hotel.create(hotelObj).then((h)=>{
-            res.render('hotels/generateHotel',{successMessage: 'All is ok'})
+        Hotel.create(hotelObj)
+        .then((h)=>{
+            Category.findOne({catName:req.body.type}).then(foundCat=>{
+                foundCat.hotels.push(h._id)
+                foundCat.save().then(()=>{
+                    res.render('hotels/generateHotel',{successMessage: 'All is ok'})                    
+                })
+            })
         }).catch(e=>{
             res.locals.globalError = e.message
             res.render('hotels/generateHotel')
         })
     },
     getAddHotelView:(req, res)=>{
-    res.render('hotels/generateHotel')
+        Category.find({}).then(cats=>{
+
+            res.render('hotels/generateHotel', {cats})
+        })
     },
     getDetails:(req,res)=>{
         let targetHotel = req.query.id
