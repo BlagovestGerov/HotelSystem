@@ -45,8 +45,9 @@ module.exports = {
             let comments = []
             for(let elem of selectedHotel.comments){
                 let tempObj = {
-                    userName:elem.creator.username,
-                    userComment:elem.description,
+                    creator: elem.creator._id,
+                    userName: elem.creator.username,
+                    userComment: elem.description,
                     userTitle:elem.title,
                     datePosted:elem.creationDate.toUTCString()
                 }

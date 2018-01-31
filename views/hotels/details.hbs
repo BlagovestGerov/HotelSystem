@@ -22,7 +22,7 @@
 {{#each comments}}
 <fieldset>
     <legend>
-        <p>{{this.userName}}</p>
+        <a href="/getDetails/{{this.creator}}"><p>{{this.userName}}</p></a>
     </legend>
     <p>{{this.userTitle}}</p>
     <p>{{this.userComment}}</p>

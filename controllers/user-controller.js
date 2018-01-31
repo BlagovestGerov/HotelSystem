@@ -71,5 +71,21 @@ module.exports = {
             res.locals.globalError = e;
             res.render('users/login');
         }
+    },
+    getDetails:(req,res)=>{
+        User.findById(req.body.id).then((u)=>{
+            console.log(u)
+            res.render('users/details', {u})
+        })
+    },
+    banUser:(req,res)=>{
+    User.findById(req.params.id).then((u)=>{
+
+            u.notBlocked = !u.notBlocked            
+  
+        u.save().then(()=>{
+            res.redirect('/')
+        })
+    })
     }
 };

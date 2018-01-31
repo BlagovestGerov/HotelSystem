@@ -28,6 +28,9 @@ module.exports = app => {
     //List    
     app.get('/list', controllers.hotel.getList)
 
+    app.get('/getDetails/:id',controllers.user.getDetails)
+    app.get('/banUser/:id',restrictedPages.hasRole('Admin'),controllers.user.banUser)
+
     app.all('*', (req, res) => {
         res.status(404);
         res.send('404 Not Found');
